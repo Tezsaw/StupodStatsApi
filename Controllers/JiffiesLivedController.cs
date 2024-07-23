@@ -6,8 +6,8 @@ namespace StupodStatsApi.Controllers
     [Route("[controller]")]
     public class JiffiesLivedController : ControllerBase
     {
-        //                                               Nov 2nd 2011
-        private static readonly DateTime BirthDate = new DateTime(2011, 11, 2); // prob add hour stuff soon
+        //                                               Nov 2nd 2011 (Added 5.5 hours cuz its slightly more accurate)
+        private static readonly DateTime BirthDate = new DateTime(2011, 11, 2, 5, 30, 0); // prob add hour stuff soon
         
         private readonly ILogger<JiffiesLivedController> _logger;
 
@@ -17,10 +17,9 @@ namespace StupodStatsApi.Controllers
         }
 
         [HttpGet(Name = "GetJiffies")]
-        public long Get()
+        public double Get()
         {
-            long x = 1;
-            return x;
+            return DateTime.Now.Subtract(BirthDate).TotalSeconds * 100;
         }
     }
 }
